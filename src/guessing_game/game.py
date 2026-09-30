@@ -17,6 +17,15 @@ class GuessingGame :
         else :
             return "too low"
 
+    def hint(self):
+        distance = abs(self.guesses[-1] - self.secret_number)
+        if distance < 5:
+            return "You are close."
+        elif distance < 20:
+            return "You are kinda close."
+        else: 
+            return "You are far."
+
     def play(self):
         for attempt in range(1, self.max_attempts + 1):
             user_guess = int(input("Enter an integer between 1 and 100, inclusive."))
@@ -25,6 +34,8 @@ class GuessingGame :
             if result == "correct":
                 print(f"You won!")
                 break
+            else:
+                print(self.hint())
         else :
             print(f"You are out of guesses. The secret number was {self.secret_number}.")
 
