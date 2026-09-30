@@ -1,7 +1,7 @@
 [project]
 name = "guessing-game"
 version = "0.1.0"
-description = "Add your description here"
+description = "A CLI number-guessing game with distance-based hints."
 readme = "README.md"
 authors = [
     { name = "sjarv", email = "samanthakjarvis@gmail.com" }
