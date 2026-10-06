@@ -3,12 +3,13 @@ import random
 
 class GuessingGame :
 
-    def __init__(self, secret_number = None, max_attempts = 5, guesses = None):
+    #def __init__(self, secret_number = None, max_attempts = 5, guesses = None):
+    def __init__(self, secret_number : int | None = None, max_attempts : int = 5, guesses : list[int] | None = None) -> None:
         self.secret_number = random.randint(1,100) if secret_number is None else secret_number
         self.max_attempts = max_attempts 
         self.guesses = guesses if guesses is not None else []
 
-    def make_guess(self, guess):
+    def make_guess(self, guess : int) -> str:
         self.guesses.append(guess)
         if guess == self.secret_number:
             return "correct"
@@ -17,7 +18,7 @@ class GuessingGame :
         else :
             return "too low"
 
-    def hint(self):
+    def hint(self) -> str:
         distance = abs(self.guesses[-1] - self.secret_number)
         if distance < 5:
             return "You are close."
@@ -26,7 +27,7 @@ class GuessingGame :
         else: 
             return "You are far."
 
-    def play(self):
+    def play(self) -> None:
         for attempt in range(1, self.max_attempts + 1):
             user_guess = int(input("Enter an integer between 1 and 100, inclusive."))
             result = self.make_guess(user_guess)
@@ -39,7 +40,7 @@ class GuessingGame :
         else :
             print(f"You are out of guesses. The secret number was {self.secret_number}.")
 
-    def summary(self):
+    def summary(self) -> dict[str, int] | dict[str, int]:
         number_of_guesses = len(self.guesses)
         minimal_guess = min([abs(x - self.secret_number) for x in self.guesses])
         no_min_dict = {"Number of guesses" : number_of_guesses, "Closest guess distance" : minimal_guess}
